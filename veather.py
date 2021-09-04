@@ -1,7 +1,7 @@
 import requests
 from tkinter import *
 
-
+# create window with the location input
 def location():
     global locationt
     locationt = Tk()
@@ -16,7 +16,7 @@ def location():
     st.pack()
     locationt.mainloop()
 
-
+# connect to api
 def weather():
     BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
     CITY = e1.get()
@@ -26,6 +26,7 @@ def weather():
     response = requests.get(URL)
 
     if response.status_code == 200:
+        # decline variables
         data = response.json()
         main = data['main']
         temperature = main['temp']
@@ -40,6 +41,8 @@ def weather():
         skyo = (f"Sky: {weather_report[0]['description']}")
         pressureo = (f"Pressure: {pressure}hPa")
         windo = (f"Wind Speed: {wind_report['speed']}km/h")
+
+        # print weather data
         print(tempo)
         print(huo)
         print(skyo)
@@ -47,6 +50,7 @@ def weather():
         print(windo)
         print()
 
+    # create widget with the weather data
     widget = Tk()
     widget.title("Veather")
     lab1 = Label(widget, text=cityo)
@@ -66,7 +70,7 @@ def weather():
     locationt.destroy()
     widget.mainloop()
 
-
+# create welcome window
 root = Tk()
 root.title("Veather")
 wlabel = Label(root, text=("Welocme to the Veather App"))
